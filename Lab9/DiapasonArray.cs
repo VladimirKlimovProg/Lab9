@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab9
 {
     class DiapasonArray
     {
-        Diapason[] arr;
-        int size;
+        readonly Diapason[] arr;
+        readonly int size;
 
         //конструктор по умолчанию
         public DiapasonArray()
@@ -96,7 +92,7 @@ namespace Lab9
 
         public int Length()
         {
-            return this.size;
+            return size;
         }
 
     }

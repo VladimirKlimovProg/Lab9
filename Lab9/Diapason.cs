@@ -1,77 +1,51 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab9
 {
     class Diapason
     {
-        double x; //начало диапазона
-        double y; // конец диапазона
-        static int count = 0; //статическая переменная для подсчета количества созданных объектов
-
         //свойства
-        public double X
-        {
-            get
-            {
-                return x;
-            }
-            set
-            {
-                x = value;
-            }
-        }
+        public double X { get; set; }
 
-        public double Y
-        {
-            get
-            {
-                return y;
-            }
-            set
-            {
-                y = value;
-            }
-        }
+        public double Y { get; set; }
+
+        public static int Count { get; set; } = 0;
 
         //конструкторы
         public Diapason()
         {
-            x = 1;
-            y = 10;
-            count++;
+            X = 1;
+            Y = 10;
+            Count++;
         }
 
         public Diapason(double x, double y)
         {
             if (y >= x)
             {
-                this.x = x;
-                this.y = y;
+                X = x;
+                Y = y;
             }
             else
             {
                 Console.WriteLine("Вторая координата должна быть больше первой.");
                 Console.WriteLine("Координата y на 10 больше координаты x в случае неправильных ввода или генерации.");
-                this.x = x;
-                this.y = x + 10;
+                X = x;
+                Y = x + 10;
             }
-            count++;
+            Count++;
         }
 
         //вывод атрибутов
         public void Show()
         {
-            Console.WriteLine($"Диапазон от {x} до {y}");
+            Console.WriteLine($"Диапазон от {X} до {Y}");
         }
 
         //проверка на пересечение двух диапазонов
         public static bool Compare(Diapason a, Diapason b)
         {
-            if ((b.y >= a.x) && (b.x <= a.y))
+            if ((b.Y >= a.X) && (b.X <= a.Y))
             {
                 return true;
             }
@@ -82,7 +56,7 @@ namespace Lab9
         }
         public bool Compare(Diapason b)
         {
-            if ((b.y >= x) && (b.x <= y))
+            if ((b.Y >= X) && (b.X <= Y))
             {
                 return true;
             }
@@ -94,27 +68,27 @@ namespace Lab9
         //Вывод количества созданных объектов
         static public int GetCount()
         {
-            return count;
+            return Count;
         }
 
         //перегрузка унарного оператора
         public static double operator !(Diapason a)
         {
-            return Math.Abs(a.y - a.x);
+            return Math.Abs(a.Y - a.X);
         }
 
         //неявное приведение типов
         //возвращает целую часть координаты x
         public static implicit operator int(Diapason a)
         {
-            return (int)Math.Truncate(a.x);
+            return (int)Math.Truncate(a.X);
         }
 
         //явное приведение типов
         //возвращает координату y
         public static explicit operator double(Diapason a)
         {
-            return a.y;
+            return a.Y;
         }
 
         //перегрузка бинарного оператора
@@ -123,8 +97,8 @@ namespace Lab9
         {
             Diapason res = new Diapason();
 
-            res.x = a.x - x;
-            res.y = a.y;
+            res.X = a.X - x;
+            res.Y = a.Y;
 
             return res;
         }
@@ -134,8 +108,8 @@ namespace Lab9
         {
             Diapason res = new Diapason();
 
-            res.x = a.x;
-            res.y = a.y - x;
+            res.X = a.X;
+            res.Y = a.Y - x;
 
             return res;
         }
